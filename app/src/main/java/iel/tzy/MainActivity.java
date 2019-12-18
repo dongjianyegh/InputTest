@@ -10,7 +10,7 @@ import iel.tzy.watcher.TEditText;
 import iel.tzy.watcher.TInputConnection;
 
 public class MainActivity extends AppCompatActivity {
-git
+
     private TEditText editText;
     TInputConnection.BackspaceListener backspaceListener = new TInputConnection.BackspaceListener() {
         @Override

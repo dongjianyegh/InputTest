@@ -1,7 +1,12 @@
 package iel.tzy.watcher;
 
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.CompletionInfo;
+import android.view.inputmethod.CorrectionInfo;
+import android.view.inputmethod.ExtractedText;
+import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
 
@@ -14,6 +19,7 @@ import android.view.inputmethod.InputConnectionWrapper;
  */
 
 public class TInputConnection extends InputConnectionWrapper {
+    private final static String TAG = "TInputConnection";
 
     private BackspaceListener mBackspaceListener;
 
@@ -71,5 +77,124 @@ public class TInputConnection extends InputConnectionWrapper {
             }
         }
         return super.sendKeyEvent(event);
+    }
+
+    @Override
+    public boolean setComposingText(CharSequence text, int newCursorPosition) {
+        boolean res = super.setComposingText(text, newCursorPosition);
+//        boolean res = true;
+        Log.d(TAG, String.format("setComposingText: [text = %s, newCursorPosition = %d], result = %d", text, newCursorPosition, res ? 1 : 0));
+        return res;
+    }
+
+    @Override
+    public CharSequence getTextBeforeCursor(int n, int flags) {
+        CharSequence res = super.getTextBeforeCursor(n, flags);
+        Log.d(TAG, String.format("getTextBeforeCusor: [n=%d, flags=%d], result=%s", n, flags, res));
+        return res;
+    }
+
+    @Override
+    public CharSequence getTextAfterCursor(int n, int flags) {
+        CharSequence res = super.getTextAfterCursor(n, flags);
+        Log.d(TAG, String.format("getTextAfterCursor: [n=%d, flags=%d], result=%s", n, flags, res));
+        return res;
+    }
+
+    @Override
+    public CharSequence getSelectedText(int flags) {
+        CharSequence res = super.getSelectedText(flags);
+        Log.d(TAG, String.format("getTextAfterCursor: [flags=%d], result=%s", flags, res));
+        return res;
+    }
+
+    @Override
+    public int getCursorCapsMode(int reqModes) {
+        int res = super.getCursorCapsMode(reqModes);
+        Log.d(TAG, String.format("getCursorCapsMode: [reqModes=%d], result=%d", reqModes, res));
+        return res;
+    }
+
+    @Override
+    public ExtractedText getExtractedText(ExtractedTextRequest request, int flags) {
+        ExtractedText res = super.getExtractedText(request, flags);
+        Log.d(TAG, String.format("getExtractedText: [flags=%d], result=%s", flags, res));
+        return res;
+    }
+
+    @Override
+    public boolean deleteSurroundingTextInCodePoints(int beforeLength, int afterLength) {
+        boolean res = super.deleteSurroundingTextInCodePoints(beforeLength, afterLength);
+        Log.d(TAG, String.format("deleteSurroundingTextInCodePoints: [beforeLength = %d, afterLength = %d], result=%d", beforeLength, afterLength, res ? 1 : 0));
+        return res;
+    }
+
+    @Override
+    public boolean setComposingRegion(int start, int end) {
+        boolean res = super.setComposingRegion(start, end);
+//        boolean res = true;
+        Log.d(TAG, String.format("setComposingRegion: [start = %d, end = %d], result=%d", start, end, res ? 1 : 0));
+        return res;
+    }
+
+    @Override
+    public boolean finishComposingText() {
+        boolean res = super.finishComposingText();
+        Log.d(TAG, String.format("finishComposingText"));
+        return res;
+    }
+
+    @Override
+    public boolean commitText(CharSequence text, int newCursorPosition) {
+        boolean res = super.commitText(text, newCursorPosition);
+        Log.d(TAG, String.format("commitText: [text = %s, newCursorPosition = %d], result=%d", text, newCursorPosition, res ? 1 : 0));
+        return res;
+    }
+
+    @Override
+    public boolean commitCompletion(CompletionInfo text) {
+        boolean res = super.commitCompletion(text);
+        Log.d(TAG, String.format("commitCompletion: [text = %s], result=%d", text, res ? 1 : 0));
+        return res;
+    }
+
+    @Override
+    public boolean commitCorrection(CorrectionInfo correctionInfo) {
+        boolean res = super.commitCorrection(correctionInfo);
+        Log.d(TAG, String.format("commitCorrection: [correctionInfo = %s], result=%d", correctionInfo, res ? 1 : 0));
+        return res;
+    }
+
+    @Override
+    public boolean setSelection(int start, int end) {
+        boolean res = super.setSelection(start, end);
+        Log.d(TAG, String.format("setSelection: [start = %d, end = %d], result = %d", start, end, res ? 1 : 0));
+        return res;
+    }
+
+    @Override
+    public boolean performEditorAction(int editorAction) {
+        boolean res = super.performEditorAction(editorAction);
+        Log.d(TAG, String.format("performEditorAction: [editorAction = %d], result = %d", editorAction, res ? 1 : 0));
+        return res;
+    }
+
+    @Override
+    public boolean performContextMenuAction(int id) {
+        return super.performContextMenuAction(id);
+    }
+
+    @Override
+    public boolean beginBatchEdit() {
+        boolean res = super.beginBatchEdit();
+        Log.d(TAG, String.format("beginBatchEdit"));
+        return res;
+    }
+
+    @Override
+    public boolean endBatchEdit() {
+        boolean res = super.endBatchEdit();
+        Log.d(TAG, String.format("endBatchEdit"));
+        return res;
     }
 }
