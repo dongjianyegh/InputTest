@@ -16,22 +16,64 @@
         android:textSize="18sp" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/setComposingText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="setComposingText" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/setComposingRegion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="setComposingRegion" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/finishComposingText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="finishComposingText" />
+
+    <CheckBox
+        android:id="@+id/getTextBeforeCursor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="getTextBeforeCursor" />
+
+    <CheckBox
+        android:id="@+id/getTextAfterCursor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="getTextAfterCursor" />
+
+    <CheckBox
+        android:id="@+id/getExtractedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="getExtractedText" />
+
+    <CheckBox
+        android:id="@+id/getSelectedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="getSelectedText" />
+
+    <CheckBox
+        android:id="@+id/setSelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="setSelection" />
+
+    <CheckBox
+        android:id="@+id/deleteSurroundingText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="deleteSurroundingText" />
+
+    <CheckBox
+        android:id="@+id/commitText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="commitText" />
 
     <!--  <TextView
           android:layout_width="wrap_content"

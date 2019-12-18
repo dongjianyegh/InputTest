@@ -52,12 +52,6 @@ public class TInputConnection extends InputConnectionWrapper {
      * */
     @Override
     public boolean deleteSurroundingText(int beforeLength, int afterLength) {
-            if(mBackspaceListener != null){
-                if(mBackspaceListener.onBackspace()){
-                 return true;
-                }
-            }
-
         return super.deleteSurroundingText(beforeLength, afterLength);
     }
 
@@ -81,14 +75,19 @@ public class TInputConnection extends InputConnectionWrapper {
 
     @Override
     public boolean setComposingText(CharSequence text, int newCursorPosition) {
+        if (!Toggles.isEnable("setComposingText")) {
+            return true;
+        }
         boolean res = super.setComposingText(text, newCursorPosition);
-//        boolean res = true;
         Log.d(TAG, String.format("setComposingText: [text = %s, newCursorPosition = %d], result = %d", text, newCursorPosition, res ? 1 : 0));
         return res;
     }
 
     @Override
     public CharSequence getTextBeforeCursor(int n, int flags) {
+        if (!Toggles.isEnable("getTextBeforeCursor")) {
+            return null;
+        }
         CharSequence res = super.getTextBeforeCursor(n, flags);
         Log.d(TAG, String.format("getTextBeforeCusor: [n=%d, flags=%d], result=%s", n, flags, res));
         return res;
@@ -96,6 +95,9 @@ public class TInputConnection extends InputConnectionWrapper {
 
     @Override
     public CharSequence getTextAfterCursor(int n, int flags) {
+        if (!Toggles.isEnable("getTextAfterCursor")) {
+            return null;
+        }
         CharSequence res = super.getTextAfterCursor(n, flags);
         Log.d(TAG, String.format("getTextAfterCursor: [n=%d, flags=%d], result=%s", n, flags, res));
         return res;
@@ -103,6 +105,9 @@ public class TInputConnection extends InputConnectionWrapper {
 
     @Override
     public CharSequence getSelectedText(int flags) {
+        if (!Toggles.isEnable("getSelectedText")) {
+            return null;
+        }
         CharSequence res = super.getSelectedText(flags);
         Log.d(TAG, String.format("getTextAfterCursor: [flags=%d], result=%s", flags, res));
         return res;
@@ -117,6 +122,9 @@ public class TInputConnection extends InputConnectionWrapper {
 
     @Override
     public ExtractedText getExtractedText(ExtractedTextRequest request, int flags) {
+        if (!Toggles.isEnable("getExtractedText")) {
+            return null;
+        }
         ExtractedText res = super.getExtractedText(request, flags);
         Log.d(TAG, String.format("getExtractedText: [flags=%d], result=%s", flags, res));
         return res;
@@ -131,6 +139,9 @@ public class TInputConnection extends InputConnectionWrapper {
 
     @Override
     public boolean setComposingRegion(int start, int end) {
+        if (!Toggles.isEnable("setComposingRegion")) {
+            return false;
+        }
         boolean res = super.setComposingRegion(start, end);
 //        boolean res = true;
         Log.d(TAG, String.format("setComposingRegion: [start = %d, end = %d], result=%d", start, end, res ? 1 : 0));
@@ -139,6 +150,9 @@ public class TInputConnection extends InputConnectionWrapper {
 
     @Override
     public boolean finishComposingText() {
+        if (!Toggles.isEnable("finishComposingText")) {
+            return false;
+        }
         boolean res = super.finishComposingText();
         Log.d(TAG, String.format("finishComposingText"));
         return res;
@@ -146,6 +160,9 @@ public class TInputConnection extends InputConnectionWrapper {
 
     @Override
     public boolean commitText(CharSequence text, int newCursorPosition) {
+        if (!Toggles.isEnable("commitText")) {
+            return false;
+        }
         boolean res = super.commitText(text, newCursorPosition);
         Log.d(TAG, String.format("commitText: [text = %s, newCursorPosition = %d], result=%d", text, newCursorPosition, res ? 1 : 0));
         return res;
@@ -167,6 +184,9 @@ public class TInputConnection extends InputConnectionWrapper {
 
     @Override
     public boolean setSelection(int start, int end) {
+        if (!Toggles.isEnable("setSelection")) {
+            return false;
+        }
         boolean res = super.setSelection(start, end);
         Log.d(TAG, String.format("setSelection: [start = %d, end = %d], result = %d", start, end, res ? 1 : 0));
         return res;

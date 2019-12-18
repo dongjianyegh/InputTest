@@ -4,10 +4,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.Gravity;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import iel.tzy.watcher.TEditText;
 import iel.tzy.watcher.TInputConnection;
+import iel.tzy.watcher.Toggles;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +38,25 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         editText = findViewById(R.id.edit_text);
         editText.setBackSpaceLisetener(backspaceListener);
+        Toggles.reset();
+        for (int i = 0; i < Toggles.checkIds.length; ++i) {
+            final int idx = i;
+            ((CheckBox) findViewById(Toggles.checkIds[i])).setChecked(true);
+            ((CheckBox) findViewById(Toggles.checkIds[i])).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Toggles.setEnable(idx, isChecked);
+                }
+            });
+        }
     }
 }
