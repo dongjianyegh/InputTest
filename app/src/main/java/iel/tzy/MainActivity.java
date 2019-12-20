@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
+import iel.tzy.hook.HookUpdateSelection;
 import iel.tzy.watcher.TEditText;
 import iel.tzy.watcher.TInputConnection;
 import iel.tzy.watcher.Toggles;
@@ -58,5 +60,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HookUpdateSelection.hookUpdateSelection(getApplicationContext(), editText);
+            }
+        });
     }
 }

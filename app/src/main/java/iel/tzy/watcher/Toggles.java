@@ -35,6 +35,7 @@ public class Toggles {
         funcIdxs.put("setSelection", idx++);
         funcIdxs.put("deleteSurroundingText", idx++);
         funcIdxs.put("commitText", idx++);
+        funcIdxs.put("updateSelection", idx++);
     }
 
     public static int[] checkIds = {
@@ -48,5 +49,6 @@ public class Toggles {
             R.id.setSelection,
             R.id.deleteSurroundingText,
             R.id.commitText,
+            R.id.updateSelection,
     };
 }
