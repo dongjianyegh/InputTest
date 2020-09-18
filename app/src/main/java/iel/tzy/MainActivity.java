@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         editText = findViewById(R.id.edit_text);
+        editText.setId(-1);
         editText.setBackSpaceLisetener(backspaceListener);
         Toggles.reset();
         for (int i = 0; i < Toggles.checkIds.length; ++i) {
@@ -65,6 +66,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 HookUpdateSelection.hookUpdateSelection(getApplicationContext(), editText);
+            }
+        });
+
+        findViewById(R.id.clear_edit_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText.setText("");
+            }
+        });
+
+        findViewById(R.id.set_edit_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText.setText("abcd");
             }
         });
     }
